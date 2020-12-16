@@ -3,39 +3,37 @@
     <InstagramInput @submit="submit" />
     <v-col v-if="medias && medias.length" cols="12">
       <v-row>
-        <v-col 
-          cols="3"
-          v-for="(item, key) in medias"
-          :key="key"
-        >
+        <v-col cols="3" v-for="(item, key) in medias" :key="key">
           <img
             :src="item.src.portrait"
             alt=""
             width="200"
             height="200"
-            @click="showImage(item)"
+            @click.prevent="showImage(item)"
           />
         </v-col>
       </v-row>
     </v-col>
-    <InstagramDialog />
+    <InstagramDialog :dialog="dialogShowed" :media="selectedMedia" />
   </v-row>
 </template>
 
 <script>
 import axios from "axios";
 import InstagramInput from "./InstagramInput.vue";
-import InstagramDialog from "./InstagramDialog.vue"
+import InstagramDialog from "./InstagramDialog.vue";
 
 export default {
   components: {
-    InstagramInput, InstagramDialog
+    InstagramInput,
+    InstagramDialog,
   },
   data() {
     return {
       medias: [],
       selectedMedia: null,
       word: "",
+      dialogShowed: true,
     };
   },
   methods: {
@@ -53,7 +51,8 @@ export default {
     },
     showImage(media) {
       this.selectedMedia = media;
-    }
+      this.dialogShowed = true;
+    },
   },
 };
 </script>

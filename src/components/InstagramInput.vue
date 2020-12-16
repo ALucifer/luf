@@ -1,5 +1,5 @@
 <template>
-  <v-col>
+  <v-col cols="12">
     <v-row>
       <v-col cols="10">
         <v-text-field
